@@ -12,7 +12,7 @@ app_license = "MIT"
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/developer_training/css/developer_training.css"
-# app_include_js = "/assets/developer_training/js/developer_training.js"
+app_include_js = ["/assets/developer_training/js/serial_batch_selector.js"]
 
 # include js, css files in header of web template
 # web_include_css = "/assets/developer_training/css/developer_training.css"
@@ -29,7 +29,10 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {
+    "Stock Entry" : "public/js/custom_stock_entry.js",
+    "Purchase Receipt": "public/js/custom_purchase_receipt.js"
+}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -94,21 +97,19 @@ app_license = "MIT"
 # ---------------
 # Override standard doctype classes
 
-# override_doctype_class = {
-#	"ToDo": "custom_app.overrides.CustomToDo"
-# }
+override_doctype_class = {
+	"Sales Order": "developer_training.custom_module.custom_sales_order.CustomSalesOrder"
+}
 
 # Document Events
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-#	"*": {
-#		"on_update": "method",
-#		"on_cancel": "method",
-#		"on_trash": "method"
-#	}
-# }
+doc_events = {
+	"Sales Order": {
+		"on_submit": "developer_training.custom_module.custom_sales_order.on_submit_events",
+	}
+}
 
 # Scheduled Tasks
 # ---------------
